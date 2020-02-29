@@ -1,0 +1,79 @@
+1. Configuring running tests
+
+run vendor/bin/phpunit -c dev/tests/unit/phpunit.xml.dist vendor/magento/module-cms
+
+2. Customize phpunit.xml
+
+cp dev/test/unit/phpunit.xml.dist dev/tests/unit/phpunit.xml
+
+leave only one testsuite
+```
+    <testsuite name="Magento_Unit_Tests_App_Code">
+        <directory suffix="Test.php">../../../app/code/Magecom/UnitTester/Test/Unit</directory>
+    </testsuite>
+```
+
+3.Create sample test
+
+in app/code/Magecom/UnitTest/Test/Unit create class SampleTest which extends \PHPUnit\Framework\TestCase and define simple test like
+
+```
+    /**
+     * @return void
+     */
+    public function TestAssertFalse(): void
+    {
+        $this->fail('Your test failed :-D');
+    }
+```
+
+fix the test
+
+```
+    /**
+     * @return void
+     */
+    public function TestAssertFalse(): void
+    {
+        $this->assertFalse(true);
+    }
+
+    /**
+     * @return void
+     */
+    public function TestAssertTrue(): void
+    {
+        $this->assertTrue(true);
+    }
+```
+4. Create test for simple class
+
+a. Create class \Magecom\UnitTest\Test\Unit\Model\Shape\CircleTest
+b. Create test which checks the value for positive radius value
+c. Create test which checks the value for zero radius
+d. Create test which checks the value for negative radius
+
+5. Setup, tearDown, dataProviders
+
+Create test RectangleTest and next tests
+length greater than width
+width greater than length
+width equals length
+width negative
+length negative
+width zero
+length zero
+override methods setUp and tearDown
+refactor tests, move creating instance of Rectangle to setUp
+create dataProvider for methods which throw exceptions
+create dataProvider for methods which don't throw exceptions
+
+6. Mocks
+
+
+
+
+
+
+10 TDD
+create test for Fibonacci sequence
